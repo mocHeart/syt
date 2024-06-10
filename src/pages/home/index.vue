@@ -13,7 +13,12 @@
         <Region />
         <!-- 展示医院结构 -->
         <div class="hospital">
-          <Card class="item" v-for="item in 10" :key="item" />
+          <Card
+            class="item"
+            v-for="item in hasHospitalArr"
+            :key="item.id"
+            :hospitalInfo="item"
+          />
         </div>
         <!-- 分页器  -->
         <!-- ->表示把内容放在最右侧 -->
@@ -23,7 +28,9 @@
           :page-sizes="[10, 20, 30, 40]"
           :background="true"
           layout="prev, pager, next, jumper, ->, sizes, total"
-          :total="13"
+          :total="total"
+          @current-change="currentChange"
+          @size-change="sizeChange"
         />
       </el-col>
       <el-col :span="4">456</el-col>
@@ -32,6 +39,11 @@
 </template>
 
 <script lang="ts" setup>
+// 引入组合式API函数
+import { onMounted, ref } from "vue";
+import { reqHospital } from "@/api/home";
+import type { Content, HospitalResponseData } from "@/api/home/type";
+
 // 引入首页轮播图组件
 import Carousel from "./carousel/index.vue";
 // 引入首页搜索组件
@@ -42,14 +54,54 @@ import Level from "./level/index.vue";
 import Region from "./region/index.vue";
 // 引入医院卡片组件
 import Card from "./card/index.vue";
-// 响应式数据 ref
-import { ref } from "vue";
 
 // 分页器需要的数据
 // 分页器页码
 let pageNo = ref<number>(1);
 // 一页展示几条数据
 let pageSize = ref<number>(10);
+// 存储已有的医院的数据
+let hasHospitalArr = ref<Content>([]);
+// 存储医院的总个数
+let total = ref<number>(0);
+//存储医院的等级相应数据
+let hostype = ref<string>("");
+//存储医院的地区
+let districtCode = ref<string>("");
+
+// 组件挂载完毕就执行
+onMounted(() => {
+  getHospitalInfo();
+});
+
+// 获取已有的医院数据
+const getHospitalInfo = async () => {
+  //获取医院的数据:默认获取第一页、一页十个医院的数据
+  let result: HospitalResponseData = await reqHospital(
+    pageNo.value,
+    pageSize.value,
+    hostype.value,
+    districtCode.value
+  );
+  if (result.code == 200) {
+    //存储已有的医院的数据
+    hasHospitalArr.value = result.data.content;
+    //存储医院的总个数
+    total.value = result.data.totalElements;
+  }
+};
+
+// 分页器页码发生变化时候回调
+const currentChange = () => {
+  getHospitalInfo();
+};
+// 分页器下拉菜单发生变化的时候会触发
+const sizeChange = () => {
+  // 当前页码归第一页
+  pageNo.value = 1;
+  // 再次发请求获取医院的数据
+  getHospitalInfo();
+};
 </script>
 
 <style scoped lang="scss">
