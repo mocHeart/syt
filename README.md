@@ -70,5 +70,8 @@ https://mp.weixin.qq.com/
 + 路由组件
 `pnpm i vue-router`
 
++ element-plus
+`pnpm i element-plus`
+
 
 
