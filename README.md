@@ -76,3 +76,6 @@ https://mp.weixin.qq.com/
 + element-plus图标
 `pnpm install @element-plus/icons-vue`
 
++ axios
+`pnpm i axios`
+
