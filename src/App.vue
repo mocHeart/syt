@@ -1,11 +1,28 @@
 <template>
-  <div>
-    <h1>APP</h1>
+  <div class="container">
+    <!-- 顶部全局组件 -->
+    <HospitalTop />
+    <!-- 展示路由组件的区域 -->
+     <div class="content">
+        hhhhhaaahhhaaa
+     </div>
+     <HospitalBottom />
   </div>
 </template>
 
 <script setup lang="ts">
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.container {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  .content {
+    margin-top: 70px;
+    width: 1200px;
+    min-height: 700px;
+    background-color: #bcf;
+  }
+}
 </style>
