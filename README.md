@@ -62,6 +62,7 @@ https://open.weixin.qq.com
 + 查看微信扫码登录文档
 https://mp.weixin.qq.com/
 
+
 ### 4. 相关插件
 
 + SCSS样式
@@ -79,3 +80,20 @@ https://mp.weixin.qq.com/
 + axios
 `pnpm i axios`
 
+
+### 5. npm命令
+
+```shell
+# 安装库
+npm install rimraf -g
+# 删除node-modules
+rimraf node_modules
+
+# 查看全局已安装
+npm ls -g
+# 加上层级控制显示深度：--depth 0
+npm ls -g --depth 0
+
+# 查看当前项目已安装包（必须有package.json文件）
+npm ls
+```

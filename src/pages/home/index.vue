@@ -8,11 +8,11 @@
     <el-row :gutter="20">
       <el-col :span="20">
         <!-- 等级子组件 -->
-        <Level />
+        <Level @getLevel="getLevel" />
         <!-- 地区子组件 -->
-        <Region />
+        <Region @getRegion="getRegion" />
         <!-- 展示医院结构 -->
-        <div class="hospital">
+        <div class="hospital" v-if="hasHospitalArr.length > 0">
           <Card
             class="item"
             v-for="item in hasHospitalArr"
@@ -20,6 +20,7 @@
             :hospitalInfo="item"
           />
         </div>
+        <el-empty v-else description="暂无数据" />
         <!-- 分页器  -->
         <!-- ->表示把内容放在最右侧 -->
         <el-pagination
@@ -100,6 +101,21 @@ const sizeChange = () => {
   // 当前页码归第一页
   pageNo.value = 1;
   // 再次发请求获取医院的数据
+  getHospitalInfo();
+};
+
+//子组件自定义事件:获取儿子给父组件传递过来的等级参数
+const getLevel = (level: string) => {
+  //收集参数:等级参数
+  hostype.value = level;
+  //再次发请求
+  getHospitalInfo();
+};
+
+//子组件自定义事件：获取子组件传递过来的地区参数
+const getRegion = (region: string) => {
+  //存储地区的参数
+  districtCode.value = region;
   getHospitalInfo();
 };
 </script>
