@@ -2,11 +2,14 @@
   <div class="hospital">
     <!-- 左侧导航区域 -->
     <div class="menu">
+      <!-- 顶端信息 -->
       <div class="top">
         <el-icon><HomeFilled /></el-icon>
         <span> / 医院信息</span>
       </div>
+      <!-- default-active 和菜单项index项匹配的高亮-->
       <el-menu :default-active="$route.path" class="el-menu-vertical-demo">
+        <!-- 预约挂号 -->
         <el-menu-item
           index="/hospital/register"
           @click="changeActive('/hospital/register')"
@@ -14,6 +17,7 @@
           <el-icon><icon-menu /></el-icon>
           <span>预约挂号</span>
         </el-menu-item>
+        <!-- 医院详情 -->
         <el-menu-item
           index="/hospital/detail"
           @click="changeActive('/hospital/detail')"
@@ -21,6 +25,7 @@
           <el-icon><document /></el-icon>
           <span>医院详情</span>
         </el-menu-item>
+        <!-- 预约通知 -->
         <el-menu-item
           index="/hospital/notice"
           @click="changeActive('/hospital/notice')"
@@ -28,6 +33,7 @@
           <el-icon><setting /></el-icon>
           <span>预约通知</span>
         </el-menu-item>
+        <!-- 停诊信息 -->
         <el-menu-item
           index="/hospital/close"
           @click="changeActive('/hospital/close')"
@@ -35,6 +41,7 @@
           <el-icon><InfoFilled /></el-icon>
           <span>停诊信息</span>
         </el-menu-item>
+        <!-- 查询/取消 -->
         <el-menu-item
           index="/hospital/search"
           @click="changeActive('/hospital/search')"
@@ -65,17 +72,16 @@ import {
 } from "@element-plus/icons-vue";
 import { useRouter, useRoute } from "vue-router";
 
-
 //获取路由器
 let $router = useRouter();
 //获取当前路由的信息
 let $route = useRoute();
+
 //左侧菜单点击事件的回调
 const changeActive = (path: string) => {
   //跳转到对应二级路由
   $router.push({ path, query: { hoscode: $route.query.hoscode } });
 };
-
 </script>
 
 <style scoped lang="scss">

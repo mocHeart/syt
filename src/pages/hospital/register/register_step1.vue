@@ -1,5 +1,5 @@
 <template>
-  <div>close</div>
+  <div>register-step1</div>
 </template>
 
 <script setup lang="ts">
