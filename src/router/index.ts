@@ -52,7 +52,7 @@ export default createRouter({
         {
           path: "register_step1",
           component: () =>
-            import("@/pages/hospital/register/register_step1.vue"),
+            import("@/pages/hospital/register/register_step1.vue"), 
           meta: {
             title: "预约第一步",
           },

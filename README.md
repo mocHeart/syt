@@ -80,6 +80,9 @@ https://mp.weixin.qq.com/
 + axios
 `pnpm i axios`
 
++ pinia
+`pnpm i pinia`
+
 
 ### 5. npm命令
 
