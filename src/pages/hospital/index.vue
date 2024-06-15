@@ -92,7 +92,7 @@ onMounted(() => {
   // 获取医院详情的数据
   detailStore.getHospital($route.query.hoscode as string);
   // 获取某一个医院科室的数据
-  // detailStore.getDeparment($route.query.hoscode as string);
+  detailStore.getDeparment($route.query.hoscode as string);
 });
 </script>
 

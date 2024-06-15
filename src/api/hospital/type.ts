@@ -53,6 +53,7 @@ export interface Deparment {
 
 // 代表存储科室数组类型
 export type DeparmentArr = Deparment[];
+
 // 获取科室接口返回的数据类型
 export interface DeparmentResponseData extends ResponseData {
   data: DeparmentArr;
