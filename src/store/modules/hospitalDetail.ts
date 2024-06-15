@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
 import { reqHospitalDetail, reqHospitalDeparment } from "@/api/hospital";
-//引入详情数据的ts类型
+// 引入详情数据的ts类型
 import type { HospitalDetail } from "@/api/hospital/type";
-//import type { DetailState } from "./interface";
+import type { DetailState } from "./interface";
+
 import type {
   HosPitalDetail,
   // DeparmentResponseData,
@@ -14,14 +15,14 @@ import type {
 const useDetailStore = defineStore("Detail", {
   state: () => {
     return {
-      //医院详情的数据
+      // 医院详情的数据
       hospitalInfo: {} as HosPitalDetail,
-      //存储医院科室的数据
+      // 存储医院科室的数据
       deparmentArr: [],
     };
   },
   actions: {
-    //获取医院详情的方法
+    // 获取医院详情的方法
     async getHospital(hoscode: string) {
       let result: HospitalDetail = await reqHospitalDetail(hoscode);
       if (result.code == 200) {
